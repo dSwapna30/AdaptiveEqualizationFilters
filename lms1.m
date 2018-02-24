@@ -13,9 +13,19 @@ h = [0.2194, 1.000, 0.2194];             %Channel Coefficients
 hConj = conj(fliplr(h));                 %h*(-n)
 x = conv(h,hConj);                       %COnvolution of h(n) with h*(-n)
 
-x_len=length(x);
+x_len=length(x);                         %Calculating Z transform for x(n)
 syms z;
 for i = 1:x_len
-    X(i)=[x(i)*z^-(i-3)];
+    X(i)=x(i)*z^(i-1);
 end
-XZ = sum(X)
+XZ = sum(X);
+
+xRoots = roots(x);                      %Calculating roots of X
+n2 = 1;
+for n1 = 1:length(xRoots)
+    if abs(xRoots(n1)) < 1
+        f(n2,1) = xRoots(n1);
+        n2 = n2+1;
+    end
+end
+
