@@ -35,9 +35,9 @@ LMSOutput(v,u,delta);
  
 %% NMLS
 
-%Delta (k) = delta / (a + ||c (k)||^2)
+Delta (k) = delta / (a + ||c (k)||^2)
 
-a = 0.01;
+a = 0.2;
 for i = 1 : n
     delta_vector(i)= delta/(a + (abs(v(i))^2));
 end
